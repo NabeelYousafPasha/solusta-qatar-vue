@@ -1,30 +1,32 @@
-<script>
-import { computed } from 'vue';
+<script setup>
+import { ref, computed } from 'vue';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { useThemeStore } from '../stores/theme';
 
-export default {
-    setup() {
-        const themeStore = useThemeStore();
-        const theme = computed(() => themeStore.theme);
+defineProps({
+    title: String,
+});
 
-        return {
-            theme,
-        };
-    },
-};
+const themeStore = useThemeStore();
+const theme = computed(() => themeStore.theme);
+
 </script>
 
 <template>
-    <div :class="theme">
-        <nav>
-            <!-- Navigation bar here -->
-        </nav>
-        <aside>
-            <!-- Sidebar here -->
-        </aside>
-        <main>
-            <slot></slot>
-        </main>
+    <div class="template-layout">
+        <Head :title="title" />
+
+        <div :class="theme">
+            <nav>
+                <!-- Navigation bar here -->
+            </nav>
+            <aside>
+                <!-- Sidebar here -->
+            </aside>
+            <main>
+                <slot></slot>
+            </main>
+        </div>
     </div>
 </template>
 
