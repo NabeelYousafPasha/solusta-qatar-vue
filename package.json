@@ -19,6 +19,7 @@
         "vue": "^3.3.13"
     },
     "dependencies": {
-        "pinia": "^2.1.7"
+        "pinia": "^2.1.7",
+        "vuedraggable": "^2.24.3"
     }
 }
