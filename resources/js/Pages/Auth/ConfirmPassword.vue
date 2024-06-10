@@ -12,6 +12,10 @@ const form = useForm({
     password: '',
 });
 
+defineOptions({
+    layout: false,
+});
+
 const passwordInput = ref(null);
 
 const submit = () => {

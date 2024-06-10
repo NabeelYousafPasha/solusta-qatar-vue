@@ -5,6 +5,10 @@ import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 defineProps({
     policy: String,
 });
+
+defineOptions({
+    layout: false,
+});
 </script>
 
 <template>

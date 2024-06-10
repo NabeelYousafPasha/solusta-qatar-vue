@@ -7,6 +7,10 @@ defineProps({
     availablePermissions: Array,
     defaultPermissions: Array,
 });
+
+defineOptions({
+    layout: false,
+});
 </script>
 
 <template>

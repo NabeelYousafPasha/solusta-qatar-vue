@@ -18,6 +18,10 @@ const form = useForm({
 const recoveryCodeInput = ref(null);
 const codeInput = ref(null);
 
+defineOptions({
+    layout: false,
+});
+
 const toggleRecovery = async () => {
     recovery.value ^= true;
 

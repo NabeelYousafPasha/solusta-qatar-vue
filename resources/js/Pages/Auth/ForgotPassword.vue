@@ -15,6 +15,10 @@ const form = useForm({
     email: '',
 });
 
+defineOptions({
+    layout: false,
+});
+
 const submit = () => {
     form.post(route('password.email'));
 };

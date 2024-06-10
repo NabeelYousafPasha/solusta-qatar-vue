@@ -1,11 +1,12 @@
 <script setup>
-import TemplateLayout from '@/Partials/Layout.vue';
+import {Head, usePage} from "@inertiajs/vue3";
+
 </script>
 
 <template>
-    <TemplateLayout title="Index">
-
-    </TemplateLayout>
+    <div>
+        <Head title="Index" />
+    </div>
 </template>
 
 <style scoped>

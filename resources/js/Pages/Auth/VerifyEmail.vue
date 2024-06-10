@@ -11,6 +11,10 @@ const props = defineProps({
 
 const form = useForm({});
 
+defineOptions({
+    layout: false,
+});
+
 const submit = () => {
     form.post(route('verification.send'));
 };

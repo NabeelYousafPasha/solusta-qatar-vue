@@ -1,6 +1,6 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { Head, Link, router } from '@inertiajs/vue3';
+import { ref, computed, onMounted } from 'vue';
+import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import { useThemeStore } from '../stores/theme';
 
 defineProps({
@@ -14,16 +14,20 @@ const theme = computed(() => themeStore.theme);
 
 <template>
     <div class="template-layout">
-        <Head :title="title" />
+        <Head v-if="title" :title="title" />
 
         <div :class="theme">
-            <nav>
-                <!-- Navigation bar here -->
-            </nav>
-            <aside>
-                <!-- Sidebar here -->
-            </aside>
-            <main>
+            <div id="nabvar">
+                <nav>
+                    <!-- Navigation bar here -->
+                </nav>
+            </div>
+            <div id="sidebar">
+                <aside>
+                    <!-- Sidebar here -->
+                </aside>
+            </div>
+            <main id="main-content">
                 <slot></slot>
             </main>
         </div>

@@ -13,6 +13,10 @@ defineProps({
     status: String,
 });
 
+defineOptions({
+    layout: false,
+});
+
 const form = useForm({
     email: '',
     password: '',
