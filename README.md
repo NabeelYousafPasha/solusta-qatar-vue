@@ -16,15 +16,27 @@
 </ul>
 
 ## Setup Guide
+```
+git clone git@github.com:NabeelYousafPasha/solusta-qatar-vue.git
 
+cd solusta-qatar-vue
+
+composer install (for laravel, inertiajs vue3)
+
+npm install
+
+npm run dev
+```
 
 ## Project Main Features
 
 ### Custom Table Component
 
-#### File: `resources/js/Components/Custom/Table.vue`
+#### File: 
+`resources/js/Components/Custom/Table.vue`
 
-#### Route: `/index`
+#### Route: 
+`/index`
 
 <img src="./public/table-custom-component.png">
 
@@ -32,9 +44,11 @@
 
 For `light/dark` theme and `sidebar` toggle state
 
-#### File(S): `resources/js/stores/*`
+#### File(S): 
+`resources/js/stores/*`
 
-#### Index.vue Component
+#### Components
+`Index.vue` resources/js/Pages/Index.vue
 
 we can mock data from MySQL via APIs but for `Solusta technical evaluation`, 
 I'm using hardcoded `array of objects` 
