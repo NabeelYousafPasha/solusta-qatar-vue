@@ -88,13 +88,14 @@ const editRow = (row, column) => {
                         @click:row="selectRow"
                     >
                         <template v-slot:item.action="{ item }">
-                            <v-btn
+                            <PrimaryButton
+                                type="button"
                                 v-if="selectedRow && selectedRow.id === item.id"
                                 icon
                                 @click.stop="showActions(item)"
                             >
                                 <v-icon>mdi-dots-vertical</v-icon>
-                            </v-btn>
+                            </PrimaryButton>
                         </template>
                     </v-data-table>
                 </v-col>

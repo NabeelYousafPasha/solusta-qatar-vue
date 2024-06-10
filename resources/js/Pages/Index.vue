@@ -2,6 +2,8 @@
 import {Head} from "@inertiajs/vue3";
 import Table from "@/Components/Custom/Table.vue";
 
+// we can mcok data from MySQL via APIs
+// but for Solusta, I'm using hardcoded
 const demoTableData = [
     {
         id: 1,
@@ -60,6 +62,7 @@ const demoTableData = [
                     {value: 'id', text: 'Id',},
                     {value: 'name', text: 'Name',},
                     {value: 'email', text: 'Email Address',},
+                    {value: 'gender', text: 'Gender',},
                     {value: 'age', text: 'Age',},
                     {value: 'contact', text: 'Contact',},
                     {value: 'action', text: 'Actions', sortable: false},
