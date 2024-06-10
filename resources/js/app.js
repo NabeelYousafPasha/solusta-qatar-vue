@@ -4,12 +4,28 @@ import '../css/app.css';
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+
+// pinia
 import { createPinia } from 'pinia';
+
+// ziggy routes
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
+// Vuetify
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+
+// default layout if not defined
 import TemplateLayout from '@/Partials/Layout.vue';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
+const vuetify = createVuetify({
+    components,
+    directives,
+})
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -24,6 +40,7 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(createPinia())
+            .use(vuetify)
             .mount(el);
     },
     progress: {

@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "pinia": "^2.1.7",
-        "vuedraggable": "^2.24.3"
+        "vuedraggable": "^2.24.3",
+        "vuetify": "^3.6.8"
     }
 }
