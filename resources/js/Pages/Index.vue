@@ -1,6 +1,6 @@
 <script setup>
 import {Head} from "@inertiajs/vue3";
-import Table from "@/Components/Custom/Table.vue";
+import SolustaTable from "@/Components/Custom/Table.vue";
 
 // we can mcok data from MySQL via APIs
 // but for Solusta, I'm using hardcoded
@@ -47,6 +47,15 @@ const demoTableData = [
     }
 ];
 
+const filters = [
+    'Guests',
+    'Students',
+    'Visitors',
+    'Vip',
+    'Local',
+    'International',
+];
+
 </script>
 
 <template>
@@ -54,9 +63,9 @@ const demoTableData = [
         <Head title="Index" />
 
         <div class="content mt-1">
-            <p>Page Content</p>
+            <p>Index Page Content</p>
 
-            <Table
+            <SolustaTable
                 id="demo-table"
                 :headerColumns="[
                     {value: 'id', text: 'Id',},
@@ -65,10 +74,12 @@ const demoTableData = [
                     {value: 'gender', text: 'Gender',},
                     {value: 'age', text: 'Age',},
                     {value: 'contact', text: 'Contact',},
-                    {value: 'action', text: 'Actions', sortable: false},
+                    // {value: 'action', text: 'Actions', sortable: false,},
                 ]"
                 :tableData="demoTableData"
-            ></Table>
+                :rowUniqueValue="`id`"
+                :customFilters="filters"
+            ></SolustaTable>
         </div>
     </div>
 </template>

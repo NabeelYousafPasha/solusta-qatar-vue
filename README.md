@@ -38,11 +38,15 @@ npm run dev
 #### Route: 
 `/index`
 
+#### V2 (Filters, Search Bar, 3 dots action if row is selected)
+<img src="./public/solusta-table.png">
+
+#### V1 (Basic)
 <img src="./public/table-custom-component.png">
 
 ### Pinia Store
 
-For `light/dark` theme and `sidebar` toggle state
+For `light/dark` theme and dynamic `sidebar` toggle state
 
 #### File(S): 
 `resources/js/stores/*`
@@ -54,5 +58,5 @@ we can mock data from MySQL via APIs but for `Solusta technical evaluation`,
 I'm using hardcoded `array of objects` 
 
 ### NOTE: 
-due to shortage of time as per perosnal availabilites, grey strucutre and psuedo 
+due to shortage of time as per personal availabilites, grey strucutre and psuedo 
 code is used as well in some cases

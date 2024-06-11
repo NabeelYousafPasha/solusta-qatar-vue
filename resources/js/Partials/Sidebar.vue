@@ -1,11 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import { Link } from "@inertiajs/vue3";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
-const isOpen = ref(false);
+const isSidebarOpen = ref(true);
 
 const toggleSidebar = () => {
-    isOpen.value = !isOpen.value;
+    isSidebarOpen.value = !isSidebarOpen.value;
 };
 
 const menuItems = [
@@ -38,22 +39,33 @@ const menuItems = [
 </script>
 
 <template>
-    <div class="sidebar-content" :class="{ 'sidebar-open': isOpen }" @click="toggleSidebar">
-        <ul class="sidebar-menu">
-        <template
-            v-for="(menu, index) in menuItems"
-            :key="index"
+    <div>
+        <v-btn
+            @click="toggleSidebar"
         >
-            <li class="menu-item">
-                <Link
-                    :href="menu.route"
-                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                >
-                    <b>{{ menu.name }}</b>
-                </Link>
-            </li>
-        </template>
-        </ul>
+            Solusta - Sidebar
+        </v-btn>
+        <div
+            class="sidebar-content"
+            :class="{ 'sidebar-open': isSidebarOpen, 'sidebar-closed': !isSidebarOpen }"
+            @click="toggleSidebar"
+        >
+            <ul class="sidebar-menu">
+            <template
+                v-for="(menu, index) in menuItems"
+                :key="index"
+            >
+                <li class="menu-item">
+                    <Link
+                        :href="menu.route"
+                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                    >
+                        <b>{{ menu.name }}</b>
+                    </Link>
+                </li>
+            </template>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -76,8 +88,17 @@ const menuItems = [
     color: white;
 }
 
+/* Style for open sidebar */
 .sidebar-open {
-    /* Sidebar styles */
+    width: 250px; /* Adjust as needed */
+    transition: all 0.3s ease;
+}
+
+/* Style for closed sidebar */
+.sidebar-closed {
+    width: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 

@@ -12,25 +12,62 @@ const form = useForm({
 defineProps({
     tableData: Array,
     headerColumns: Array,
+    customFilters: Array,
+    rowUniqueValue: String,
 });
 
 const selectedRow = ref(null);
-const filters = ref([]);
+const selectedFilters = ref([]);
+const search = ref(null);
 
 const loadMore = () => {
     // leaving logic for later
 };
 
-const applyFilter = (filter) => {
+const applySeachFilter = (filter) => {
     // Filter logic
-    // leaving logic for later
+    // we can do axios call again, with query param of filter
+
+    let ep = `axios call for solusta/api?q=${search.value}`;
+    alert(ep);
+};
+
+const clearSearchFilter = () => {
+    search.value = null;
+    // Clear filter logic
+
+    let ep = `axios call for solusta/api with any query params`;
+    alert(ep);
 };
 
 const clearFilters = () => {
-    filters.value = [];
+    selectedFilters.value = [];
     // Clear filter logic
-    // leaving logic for later
+
+    let ep = `axios call for solusta/api with any query params`;
+    alert(ep);
 };
+
+const resetSearchAndFilters = () => {
+    clearFilters();
+    clearSearchFilter();
+}
+
+const toggleFilter = (filter) => {
+    const index = selectedFilters.value.indexOf(filter);
+    if (index === -1) {
+        selectedFilters.value.push(filter); // Add filter if not already selected
+    } else {
+        selectedFilters.value.splice(index, 1); // Remove filter if already selected
+    }
+
+    let ep = `axios call for solusta/api with updated filters`;
+    alert(ep);
+}
+
+const isSelectedFilter = (filter) => {
+    return selectedFilters.value.includes(filter);
+}
 
 const sortBy = (column) => {
     // Sorting logic
@@ -54,25 +91,44 @@ const editRow = (row, column) => {
 <template>
     <div>
         <v-container>
+
             <v-row>
                 <v-col>
-                    <div class="table-filters">
+                    <v-chip
+                        v-for="(filter, index) in customFilters"
+                        :key="index"
+                        @click="toggleFilter(filter)"
+                        :color="isSelectedFilter(filter) ? 'primary' : ''"
+                    >
+                        {{ filter }}
+                    </v-chip>
+            </v-col>
+            </v-row>
+
+            <v-row>
+                <v-col>
+                    <div class="table-search-filter">
                         <!-- Filters -->
-                        <input
-                            v-for="filter in filters"
-                            :key="filter"
-                            type="text"
-                            :id="filter"
-                            :value="filter"
-                            class="mt-1 block w-full"
-                            @input="applyFilter(filter)"
-                        />
-                        <PrimaryButton
+                        <v-text-field
+                            v-model="search"
+                            label="Search"
+                            outlined
+                            dense
+                        ></v-text-field>
+
+                        <v-btn
                             class="ms-4"
-                            @click="clearFilters"
+                            @click="applySeachFilter"
                         >
-                            Clear Filters
-                        </PrimaryButton>
+                            Search
+                        </v-btn>
+
+                        <v-btn
+                            class="ms-4"
+                            @click="resetSearchAndFilters"
+                        >
+                            Reset Search & Filters
+                        </v-btn>
                     </div>
                 </v-col>
             </v-row>
@@ -82,20 +138,51 @@ const editRow = (row, column) => {
                     <v-data-table
                         :headers="headerColumns"
                         :items="tableData"
-                        item-value="id"
+                        :item-value="rowUniqueValue"
                         class="elevation-1"
+                        density="compact"
                         show-select
-                        @click:row="selectRow"
                     >
                         <template v-slot:item.action="{ item }">
-                            <PrimaryButton
-                                type="button"
+                            <v-btn
                                 v-if="selectedRow && selectedRow.id === item.id"
                                 icon
                                 @click.stop="showActions(item)"
                             >
                                 <v-icon>mdi-dots-vertical</v-icon>
-                            </PrimaryButton>
+                            </v-btn>
+                        </template>
+
+                        <!-- Column for inline editing -->
+<!--                        <template #item.action="{ item }">-->
+<!--                            <v-btn-->
+<!--                                icon-->
+<!--                                @click.stop="editRow(item)"-->
+<!--                            >-->
+<!--                                <v-icon>mdi-pencil</v-icon>-->
+<!--                            </v-btn>-->
+<!--                        </template>-->
+
+                        <!-- Edit dialog -->
+                        <template #item.selected="{ item }">
+                            <v-dialog
+                                v-model="editDialog"
+                                max-width="500"
+                            >
+                                <v-card>
+                                    <v-card-title>Edit Row</v-card-title>
+                                    <v-card-text>
+                                        <!-- Input fields for editing -->
+                                        <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
+                                        <v-text-field v-model="editedItem.type" label="Type"></v-text-field>
+                                        <!-- Add more input fields as needed -->
+                                    </v-card-text>
+                                    <v-card-actions>
+                                        <v-btn color="primary" @click="saveRow">Save</v-btn>
+                                        <v-btn color="error" @click="cancelEdit">Cancel</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-dialog>
                         </template>
                     </v-data-table>
                 </v-col>

@@ -61,6 +61,17 @@ div.main-content {
     height: 1000px;
 }
 
+/* Style for main content */
+.main-content {
+    margin-left: 0; /* Adjust according to sidebar width */
+    transition: margin-left 0.3s ease;
+}
+
+/* Style for main content when sidebar is open */
+.sidebar-open + .main-content {
+    margin-left: 250px; /* Adjust according to sidebar width */
+}
+
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
     .sidebar {
